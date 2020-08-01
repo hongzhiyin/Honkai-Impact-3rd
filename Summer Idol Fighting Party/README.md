@@ -8,8 +8,10 @@
 
 对战双方的设置是通过修改 main() 函数上方的 #define 内容，如：
 
+```c++
 #define Left kiana
 #define Right mei
+```
 
 角色 id 列表也展示在 main() 函数上方的注释中。
 
