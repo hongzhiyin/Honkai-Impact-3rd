@@ -337,7 +337,7 @@ struct Theresa : public Role {
     bool cooldown(int round) { return round % 3 == 0; }
 
     template <class R>
-    void skill_1(R &rival) { if (rnd.percent(30)) rival.DEF = max(0, rival.DEF - 5); }
+    void skill_1(R &rival) { if (!miss() && rnd.percent(30)) rival.DEF = max(0, rival.DEF - 5); }
 
     template <class R>
     void skill_2(R &rival) {
