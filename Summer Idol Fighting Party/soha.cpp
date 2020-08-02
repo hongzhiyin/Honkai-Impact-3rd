@@ -483,13 +483,13 @@ struct Natasha : public Role {
 
 // kiana mei bronya seele sakura_kallen rozaliya_liliya durandal fuhua theresa rita himeko natasha
 
-#define Left rozaliya_liliya
-#define Right durandal
+#define Left sakura_kallen
+#define Right theresa
 
 int main()
 {
-    RecordLog = 0;
-    int Count = 10000, A = 0, B = 0;
+    RecordLog = 1;
+    int Count = 1, A = 0, B = 0;
     for (int i = 0; i < Count; ++i) {
         Game game;
         game.start(Left, Right);
