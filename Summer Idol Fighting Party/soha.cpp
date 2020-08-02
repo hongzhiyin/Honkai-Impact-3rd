@@ -226,10 +226,11 @@ struct Sakura_Kallen : public Role {
     void battle(int round, R &rival) {
         if (dizzy()) return;
 
+        if (!Sil) skill_1();
         if (!silence() && cooldown(round)) {
             skill_2(rival);
         } else {
-            skill_1();
+            //skill_1();
             Damage damage = attack();
             apply(damage, rival);
         }
@@ -488,8 +489,8 @@ struct Natasha : public Role {
 
 int main()
 {
-    RecordLog = 1;
-    int Count = 1, A = 0, B = 0;
+    RecordLog = 0;
+    int Count = 10000, A = 0, B = 0;
     for (int i = 0; i < Count; ++i) {
         Game game;
         game.start(Left, Right);
