@@ -121,7 +121,8 @@ struct Mei : public Role {
     
     bool cooldown(int round) { return round % 2 == 0; }
 
-    void skill_1(Damage &damage) { damage.Diz = rnd.percent(30); }
+    template <class R>
+    void skill_1(R &rival) { if (!miss() && rnd.percent(30)) rival.Diz = 1; }
 
     template <class R>
     void skill_2(R &rival) {
@@ -133,14 +134,15 @@ struct Mei : public Role {
     void battle(int round, R &rival) {
         if (dizzy()) return;
 
+        int tmp = Sil;
         Damage damage;
         if (!silence() && cooldown(round)) {
             skill_2(rival);
         } else {
             damage = attack();
-            if (!silence()) skill_1(damage);
             apply(damage, rival);
         }
+        if (!tmp) skill_1(rival);
     }
 } mei;
 
