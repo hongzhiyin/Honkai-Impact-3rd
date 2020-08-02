@@ -138,7 +138,7 @@ struct Mei : public Role {
             skill_2(rival);
         } else {
             damage = attack();
-            skill_1(damage);
+            if (!silence()) skill_1(damage);
             apply(damage, rival);
         }
     }
@@ -265,8 +265,9 @@ struct Rozaliya_Liliya : public Role {
 
         if (!silence() && buff) {
             skill_2(rival);
+            buff = 0;
         } else {
-            buff = max(0, buff - 1);
+            buff = 0;
             Damage damage = attack();
             apply(damage, rival);
         }
@@ -348,13 +349,14 @@ struct Theresa : public Role {
     void battle(int round, R &rival) {
         if (dizzy()) return;
 
+        int tmp = Sil;
         if (!silence() && cooldown(round)) {
             skill_2(rival);
         } else {
             Damage damage = attack();
             apply(damage, rival);
         }
-        skill_1(rival);
+        if (!tmp) skill_1(rival);
     }
 } theresa;
 
