@@ -98,7 +98,10 @@ struct Kiana : public Role {
 
     bool cooldown(int round) { return round % 2 == 0; }
 
-    void skill_1(Damage &damage, int def) { damage.val += 2 * def; }
+    void skill_1(Damage &damage, int def) {
+        damage.val += 2 * def;
+        damage.ult = 1;
+    }
 
     void skill_2() { Diz = rnd.percent(35); }
 
@@ -246,9 +249,9 @@ struct Rozaliya_Liliya : public Role {
     void skill_2(R &rival) {
         Damage damage;
         if (rnd.percent(50)) {
-            damage = Damage(0, 0, 233);
+            damage = Damage(0, 1, 233);
         } else {
-            damage = Damage(0, 0, 50);
+            damage = Damage(0, 1, 50);
         }
         apply(damage, rival);
     }
@@ -480,8 +483,8 @@ struct Natasha : public Role {
 
 // kiana mei bronya seele sakura_kallen rozaliya_liliya durandal fuhua theresa rita himeko natasha
 
-#define Left mei
-#define Right natasha
+#define Left rozaliya_liliya
+#define Right durandal
 
 int main()
 {
