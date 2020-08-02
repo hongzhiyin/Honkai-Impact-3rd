@@ -436,7 +436,8 @@ struct Himeko : public Role {
 } himeko;
 
 struct Natasha : public Role {
-    Natasha () : Role("natasha", 100, 23, 14, 14, 1) {}
+    int check, buff;
+    Natasha () : Role("natasha", 100, 23, 14, 14, 1), check(0), buff(0) {}
 
     bool cooldown(int round) { return round % 3 == 0; }
 
@@ -445,7 +446,7 @@ struct Natasha : public Role {
     //val = 1.25 * ATK - 0.25 * DEF
     template <class R>
     void skill_1(Damage &damage, R rival) {
-        if ((rival.ID == "kiana" || rnd.percent(25)) && damage.val > rival.DEF) {
+        if (buff && damage.val > rival.DEF) {
             damage.val = (int)round(1.25 * damage.val - 0.25 * rival.DEF);
         }
     }
@@ -461,6 +462,10 @@ struct Natasha : public Role {
 
     template <class R>
     void battle(int round, R &rival) {
+        if (!check) {
+            buff = (rival.ID == "kiana" || rnd.percent(25));
+            check = 1;
+        }
         if (dizzy()) return;
 
         if (!silence() && cooldown(round)) {
@@ -475,8 +480,8 @@ struct Natasha : public Role {
 
 // kiana mei bronya seele sakura_kallen rozaliya_liliya durandal fuhua theresa rita himeko natasha
 
-#define Left kiana
-#define Right mei
+#define Left mei
+#define Right natasha
 
 int main()
 {
