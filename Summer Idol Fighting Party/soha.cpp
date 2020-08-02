@@ -343,7 +343,7 @@ struct Theresa : public Role {
     bool cooldown(int round) { return round % 3 == 0; }
 
     template <class R>
-    void skill_1(R &rival) { if (!miss() && rnd.percent(30)) rival.DEF = max(0, rival.DEF - 5); }
+    void skill_1(R &rival) { if (!miss() && rnd.percent(30)) rival.DEF -= 5;/*= max(0, rival.DEF - 5);*/ }
 
     template <class R>
     void skill_2(R &rival) {
@@ -484,8 +484,8 @@ struct Natasha : public Role {
 
 // kiana mei bronya seele sakura_kallen rozaliya_liliya durandal fuhua theresa rita himeko natasha
 
-#define Left sakura_kallen
-#define Right theresa
+#define Left mei
+#define Right rozaliya_liliya
 
 int main()
 {
