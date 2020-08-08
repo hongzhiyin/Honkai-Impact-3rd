@@ -484,8 +484,8 @@ struct Natasha : public Role {
 
 // kiana mei bronya seele sakura_kallen rozaliya_liliya durandal fuhua theresa rita himeko natasha
 
-#define Left mei
-#define Right rozaliya_liliya
+#define Left natasha
+#define Right theresa
 
 int main()
 {
